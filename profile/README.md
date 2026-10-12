@@ -38,6 +38,10 @@ are pluggable.
 | [**naps**](https://github.com/napplet/naps) | The protocol — NIP-5D (web binding) + the NAP interface specs and projection registry |
 | [**web**](https://github.com/napplet/web) | `@napplet/*` SDK — framework-agnostic, ESM, zero runtime deps |
 | [**boilerplate**](https://github.com/napplet/boilerplate) | `npx @napplet/boilerplate` — start a napplet in seconds |
+| [**cvm**](https://github.com/napplet/cvm) | Generation, capability review, and verified toolchain promotion |
+| [**nappagochi**](https://github.com/napplet/nappagochi) | Activity-driven pet napplet |
+| [**migrate**](https://github.com/napplet/migrate) | Manifest migration tool |
+| [**.github**](https://github.com/napplet/.github) | Organization guidance |
 
 ### Build a (web) napplet
 
@@ -49,11 +53,11 @@ pnpm test:conformance    # prove it speaks the protocol before you ship
 ```
 
 ```ts
-import '@napplet/shim';                  // installs window.napplet
-import { relay, identity } from '@napplet/sdk';
+// The runtime injects window.napplet before app code runs.
+import { outbox, identity } from '@napplet/sdk';
 
 const me = await identity.getPublicKey();
-const notes = await relay.query({ kinds: [1], authors: [me], limit: 20 });
+const notes = await outbox.query([{ kinds: [1], authors: [me], limit: 20 }]);
 ```
 
 No signer in the sandbox. No relay pool in the app. The host does it; the napplet
@@ -64,3 +68,7 @@ just asks — same contract, whatever the runtime.
 <div align="center">
 <sub><a href="https://napplet.run">napplet.run</a> · <a href="https://napplet.run/docs">docs</a> · web binding rides <a href="https://github.com/nostr-protocol/nips">Nostr</a> · MIT</sub>
 </div>
+
+### Controller input
+
+The proposed [NAP-GAMEPAD](https://github.com/napplet/naps/pull/108) supplies optional controller snapshots through a host-owned interface. The SDK, runtime, conformance tooling, and starter guidance track that proposal. Apps keep keyboard or pointer fallbacks and respect frame focus; native controller access belongs to the host. This is non-normative guidance; the living proposal defines the API and messages.
