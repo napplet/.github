@@ -19,7 +19,7 @@ any runtime that can sandbox code and pass messages:
 
 | Projection | Binding | Status |
 |------------|---------|--------|
-| **Web** | iframe + `postMessage` → `window.napplet.*` · [NIP-5D](https://github.com/napplet/naps) | **Live** |
+| **Web** | iframe + `postMessage` → `window.napplet.*` · [NIP-5D](https://github.com/nostr-protocol/nips/pull/2303) | **Live** |
 | **Native** | OS process + IPC / FFI | Possible |
 | **WASM** | host imports | Possible |
 
@@ -36,7 +36,7 @@ are pluggable.
 | Repo | What |
 |------|------|
 | [**naps**](https://github.com/napplet/naps) | The protocol — NIP-5D (web binding) + the NAP interface specs and projection registry |
-| [**web**](https://github.com/napplet/web) | `@napplet/*` SDK — framework-agnostic, ESM, zero runtime deps |
+| [**web**](https://github.com/napplet/web) | `@napplet/*` SDK — framework-agnostic ESM packages |
 | [**boilerplate**](https://github.com/napplet/boilerplate) | `npx @napplet/boilerplate` — start a napplet in seconds |
 | [**cvm**](https://github.com/napplet/cvm) | Generation, capability review, and verified toolchain promotion |
 | [**nappagochi**](https://github.com/napplet/nappagochi) | Activity-driven pet napplet |
